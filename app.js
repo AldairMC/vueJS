@@ -1,20 +1,22 @@
-const app = new Vue({
-el: '#app',
-data: {
-    users: [],
-    newUser: {
-        code: '',
-        name: '',
-        lastName: '',
-        mobile: '',
-        phone: '',
-        address: '',
-        country: '',
-        state: '',
-        city: ''        
+const app = new Vue ({
+    el: '#app',
+    data: {
+        users: [],
+        newUser: {
+            code: '',
+            name: '',
+            lastName: '',
+            mobile: '',
+            phone: '',
+            address: '',
+            country: '',
+            state: '',
+            city: ''
+        },
+        clavao: false
     },
     methods: {
-        addUser(){
+        addUser() {
             this.users.push({
                 code: this.newUser.code,
                 name: this.newUser.name,
@@ -35,7 +37,20 @@ data: {
             this.newUser.country = '';
             this.newUser.state = '';
             this.newUser.city = '';
+            localStorage.setItem('users-vue', JSON.stringify(this.users));
+        },
+        deleteUser(index){
+          this.users.splice(index, 1)
+          localStorage.setItem('user.vue', JSON.stringify(this.users))
         }
-    } 
-}
+        
+    },
+    created(){
+        let datosBD = JSON.parse(localStorage.getItem('users-vue'));
+        if(datosBD === null) {
+            this.users = []
+        }else {
+            this.users = datosBD
+        }
+    }
 })

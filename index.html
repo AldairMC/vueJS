@@ -15,37 +15,66 @@
             <v-content>
                 <v-container grid-list-md text-xs-center>
                     <v-layout row wrap>
-                        <v-flex xs6>
+                        <v-flex md6>
                             <v-card>
-                                <v-cart-title>
+                                <v-card-title>
                                     <h1>Form</h1>
-                                </v-cart-title>
+                                </v-card-title>
                                 <v-container>
-                                    <v-layout row wrap align-center justify-content>
+                                    <v-layout row wrap align-center justify-center>
                                         <v-flex>
-                                           <div>
-                                               <v-form>
-                                                   <v-text-field v-model="newUser.code" label="Code" mask=""></v-text-field>
-                                                   <v-text-field v-model="newUser.name" label="Name"></v-text-field>
-                                                   <v-text-field v-model="newUser.lastName" label="Last Name"></v-text-field>
-                                                   <v-text-field v-model="newUser.mobile" label="Mobile"></v-text-field>
-                                                   <v-text-field v-model="newUser.phone" label="Phone"></v-text-field>
-                                                   <v-text-field v-model="newUser.address" label="Address"></v-text-field>
-                                                   <v-text-field v-model="newUser.country" label="Country"></v-text-field>
-                                                   <v-text-field v-model="newUser.state" label="State"></v-text-field>
-                                                   <v-text-field v-model="newUser.city" label="City"></v-text-field>
-                                               </v-form>
-                                           </div>
+                                            <div>
+                                                <v-form>
+                                                    <v-text-field v-model="newUser.code" label="Code"></v-text-field>
+                                                    <v-text-field v-model="newUser.name" label="name"></v-text-field>
+                                                    <v-text-field v-model="newUser.lastName" label="Last Name">
+                                                    </v-text-field>
+                                                    <v-text-field v-model="newUser.mobile" label="Cellphone">
+                                                    </v-text-field>
+                                                    <v-text-field v-model="newUser.phone" label="Phone"></v-text-field>
+                                                    <v-text-field v-model="newUser.address" label="Address">
+                                                    </v-text-field>
+                                                    <v-text-field v-model="newUser.country" label="Country">
+                                                    </v-text-field>
+                                                    <v-text-field v-model="newUser.state" label="State">
+                                                    </v-text-field>
+                                                    <v-text-field v-model="newUser.city" label="City">
+                                                    </v-text-field>
+                                                </v-form>
+                                                <v-btn color="success" @click="addUser()">
+                                                    submit
+                                                </v-btn>
+                                            </div>
                                         </v-flex>
                                     </v-layout>
                                 </v-container>
                             </v-card>
                         </v-flex>
-                        <v-flex xs6>
+                        <v-flex md6>
                             <v-card>
                                 <v-card-title>
-
+                                    <h1>Users</h1>
                                 </v-card-title>
+                                <v-container>
+                                    <v-layout>
+                                        <v-flex>
+                                            <div class="mt-3" v-for="(item, index) of users">
+                                                <v-alert :value="true" color="info" icon="info" outline>
+                                                    <v-layout align-center justify-center row fill-height>
+                                                        <v-flex>
+                                                           {{item.code}} - {{item.name}}
+                                                        </v-flex>
+                                                        <v-flex>
+                                                          <v-btn color="error" dark fab small @click="deleteUser(index)">
+                                                            <v-icon dark> clear </v-icon>
+                                                          </v-btn>
+                                                        </v-flex>
+                                                    </v-layout>
+                                                </v-alert>
+                                            </div>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
                             </v-card>
                         </v-flex>
                     </v-layout>
@@ -54,6 +83,8 @@
         </v-app>
     </div>
 
+
+    <!--Vue-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
     <script src="app.js"></script>
